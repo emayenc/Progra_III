@@ -5,6 +5,9 @@
  */
 package p1_progiii;
 
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +15,8 @@ import javax.swing.JOptionPane;
  * @author Administrador
  */
 public class formMain extends javax.swing.JFrame {
+
+    List<Literal> ListaVariables = new ArrayList<Literal>();
 
     /**
      * Creates new form formMain
@@ -35,7 +40,6 @@ public class formMain extends javax.swing.JFrame {
         btnCancelar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         btnMas = new javax.swing.JButton();
@@ -44,6 +48,9 @@ public class formMain extends javax.swing.JFrame {
         btnDivide = new javax.swing.JButton();
         btnPotencia = new javax.swing.JButton();
         btnRaiz = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtResultadoOperacion = new javax.swing.JTextField();
+        txtVariables = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -53,6 +60,9 @@ public class formMain extends javax.swing.JFrame {
         });
 
         txtExpresion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpresionKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtExpresionKeyTyped(evt);
             }
@@ -88,8 +98,6 @@ public class formMain extends javax.swing.JFrame {
         jLabel2.setText("NOTA: Los operadores soportados en las operaciones son: + - * / ^ √  ");
 
         jLabel3.setText("Resultado notación polaca:");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
 
         jLabel5.setText("Operadores");
 
@@ -207,6 +215,14 @@ public class formMain extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
+        jLabel6.setText("Los valores de las variables son:");
+
+        txtResultadoOperacion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtResultadoOperacion.setEnabled(false);
+
+        txtVariables.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtVariables.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,10 +230,14 @@ public class formMain extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtResultadoOperacion)
+                                .addGap(110, 110, 110))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -227,7 +247,8 @@ public class formMain extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel6))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -247,13 +268,17 @@ public class formMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtResultadoOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,6 +293,7 @@ public class formMain extends javax.swing.JFrame {
     private void txtExpresionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresionKeyTyped
         // TODO add your handling code here:
         //evaluaDigito(String.valueOf(evt.getKeyChar()));
+
 
     }//GEN-LAST:event_txtExpresionKeyTyped
 
@@ -350,6 +376,14 @@ public class formMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtExpresion.requestFocus();
     }//GEN-LAST:event_formWindowOpened
+
+    private void txtExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresionKeyPressed
+        // TODO add your handling code here:
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
+            procesar();
+        }
+    }//GEN-LAST:event_txtExpresionKeyPressed
     public void agregaSigno(String valor) {
         String temp;
         temp = txtExpresion.getText();
@@ -359,38 +393,36 @@ public class formMain extends javax.swing.JFrame {
     }
 
     public void limpiar() {
-        jLabel4.setText("");
         txtExpresion.setText("");
+        txtVariables.setText("");
+        ListaVariables.removeAll(ListaVariables);
         txtExpresion.requestFocus();
 
     }
 
     public void procesar() {
         String resultado = "", expresion = "";
+        ListaVariables.removeAll(ListaVariables);
         if (txtExpresion.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese una expresión para evaluar");
             limpiar();
         } else {
             expresion = txtExpresion.getText();
-            //for (int i = 0; i < txtExpresion.getText().length(); i++) {
-            //    char c = expresion.charAt(i);
-            //    NotacionPolaca.evaluar(String.valueOf(c));
-            //    resultado = resultado + c ;
-            //}
             revisaExpresion(expresion);
-            jLabel4.setText(resultado);
         }
     }
 
     public void revisaExpresion(String dato) {
-        String letrasNumeros = "[a-z0-9+\\-*/=()^√\b]+";
+        String letrasNumerosOperadores = "[a-z0-9+\\-*/=()^√\b]+";
+        String letras = "[a-z]";
         String exp1 = "", exp2 = "";
-        if (dato.matches(letrasNumeros)) {
+        String var = "";
+        if (dato.matches(letrasNumerosOperadores)) {
             exp1 = dato;
         } else {
             for (int i = 0; i < dato.length(); i++) {
                 char c = dato.charAt(i);
-                if (String.valueOf(c).matches(letrasNumeros)) {
+                if (String.valueOf(c).matches(letrasNumerosOperadores)) {
                     exp1 = exp1 + c;
                 } else {
                     exp2 = exp2 + c + " ";
@@ -400,7 +432,21 @@ public class formMain extends javax.swing.JFrame {
         if (exp2.length() != 0) {
             JOptionPane.showMessageDialog(null, "La expresión ingresada contiene los siguientes caracteres no permitidos: " + exp2);
         } else {
+            for (int i = 0; i < dato.length(); i++) {
+                char c = dato.charAt(i);
+                if (String.valueOf(c).matches(letras)) {
+                    Literal item = new Literal();
+                    item.nombre = c;
+                    item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                    ListaVariables.add(item);
+                    txtExpresion.requestFocus();
+                }
+            }
+            for (int i = 0; i < ListaVariables.size(); i++) {
+                var = var + ListaVariables.get(i).getNombre() + " : " + ListaVariables.get(i).getValor() + " ";
 
+            }
+            txtVariables.setText(var);
         }
 
     }
@@ -452,9 +498,11 @@ public class formMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtExpresion;
+    private javax.swing.JTextField txtResultadoOperacion;
+    private javax.swing.JTextField txtVariables;
     // End of variables declaration//GEN-END:variables
 }
