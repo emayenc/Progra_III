@@ -430,7 +430,7 @@ public class formMain extends javax.swing.JFrame {
             }
         }
         if (exp2.length() != 0) {
-            JOptionPane.showMessageDialog(null, "La expresión ingresada contiene los siguientes caracteres no permitidos: " + exp2);
+            JOptionPane.showMessageDialog(null, "La expresión ingresada contiene los siguientes caracteres no permitidos: " + "'"+exp2+"'");
         } else {
             for (int i = 0; i < dato.length(); i++) {
                 char c = dato.charAt(i);
@@ -438,6 +438,8 @@ public class formMain extends javax.swing.JFrame {
                     Literal item = new Literal();
                     item.nombre = c;
                     item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                    
+                    
                     ListaVariables.add(item);
                     txtExpresion.requestFocus();
                 }
@@ -447,6 +449,19 @@ public class formMain extends javax.swing.JFrame {
 
             }
             txtVariables.setText(var);
+           
+            for(int x=0;x< dato.length();x++){
+                for(int i = 0;i < ListaVariables.size();i++){
+                    char v= dato.charAt(x);
+                    if((char)ListaVariables.get(i).getNombre()== v){
+                        dato=dato.replace(v, (char)ListaVariables.get(i).getValor());
+                    }
+                }
+                
+            }
+
+            System.out.println(dato);
+           // int result = evaluate(expression);
         }
 
     }

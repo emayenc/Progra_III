@@ -12,31 +12,42 @@ package p1_progiii;
 import java.util.Stack;
 
 public class NotacionPolaca {
-    public static double evaluar(String expression) {
-        Stack<Double> stack = new Stack<>();
 
-    String[] tokens = expression.split(" ");
-
-        for (String token : tokens) {
-            if (token.equals("+")) {
-
-            } else if (token.equals("-")) {
-
-            } else if (token.equals("*")) {
-
-            } else if (token.equals("/")) {
-
-            } else if (token.equals("^")) {
-
-            }else if (token.equals("√")) {
-
-            }  
-            else {
-                double operand = Double.parseDouble(token);
-                stack.push(operand);
+    public static double evaluar(String expresion) {
+        Stack<Double> pila = new Stack<>();
+        String[] items = expresion.split(" ");
+        String operadores = "[\\-*/=()^√\b]+";
+        for (String item : items) {
+            if (item.matches(operadores)) {
+                Double operador2 = pila.pop();
+                Double operador1 = pila.pop();
+                Double resultado = aplicaOperacion(item, operador1, operador2);
+                pila.push(resultado);
+            } else {
+                Double operando = Double.parseDouble(item);
+                pila.push(operando);
             }
         }
 
-        return stack.pop();
+        return pila.pop();
+    }
+
+    private static Double aplicaOperacion(String operador, Double operando1, Double operando2) {
+        switch (operador) {
+            case "+":
+                return operando1 + operando2;
+            case "-":
+                return operando1 - operando2;
+            case "*":
+                return operando1 * operando2;
+            case "/":
+                return operando1 / operando2;
+            case "^":
+                return Math.pow(operando1, operando2);
+            case "√":
+                return Math.sqrt(operando1);
+            default:
+                throw new IllegalArgumentException("Operador inválido: " + operador);
+        }
     }
 }
