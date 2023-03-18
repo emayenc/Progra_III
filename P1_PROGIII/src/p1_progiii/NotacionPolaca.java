@@ -15,7 +15,7 @@ public class NotacionPolaca {
     public static double evaluar(String expression) {
         Stack<Double> stack = new Stack<>();
 
-        String[] tokens = expression.split(" ");
+    String[] tokens = expression.split(" ");
 
         for (String token : tokens) {
             if (token.equals("+")) {
