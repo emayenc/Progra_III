@@ -10,26 +10,76 @@ package p1_progiii;
  * @author Administrador
  */
 import java.util.Stack;
+import javax.swing.JOptionPane;
 
 public class NotacionPolaca {
 
     public static double evaluar(String expresion) {
-        Stack<Double> pila = new Stack<>();
-        String[] items = expresion.split(" ");
-        String operadores = "[\\-*/=()^√\b]+";
-        for (String item : items) {
-            if (item.matches(operadores)) {
-                Double operador2 = pila.pop();
-                Double operador1 = pila.pop();
-                Double resultado = aplicaOperacion(item, operador1, operador2);
-                pila.push(resultado);
+        Stack<String> pilaoperador = new Stack<>();
+        Stack<Double> pilaoperando = new Stack<>();
+        String operadores = "[\\-+*/=()^√\b]+", expresion2 = "";
+
+        for (int i = 0; i < expresion.length(); i++) {
+            char c = expresion.charAt(i);
+            if (String.valueOf(c).matches(operadores)) {
+                expresion2 = expresion2 + " " + String.valueOf(c) + " ";
             } else {
-                Double operando = Double.parseDouble(item);
-                pila.push(operando);
+                expresion2 = expresion2 + String.valueOf(c);
             }
         }
+        String[] items = expresion2.split(" ");
 
-        return pila.pop();
+        //for (int x = 0; x < expresion.length(); x++) {
+        //char v = expresion.charAt(x);
+        for (String item : items) {
+            if (String.valueOf(item).matches(operadores)) {
+                pilaoperador.push(String.valueOf(item));
+            } else {
+                if (pilaoperando.size() > 1) {
+                    Double operador2 = pilaoperando.pop();
+                    Double operador1 = pilaoperando.pop();
+                    Double resultado = aplicaOperacion(pilaoperador.pop(), operador1, operador2);
+                    pilaoperando.push(resultado);
+                } else {
+                    pilaoperando.push(Double.parseDouble(String.valueOf(item)));
+                    if (pilaoperando.size() > 1) {
+                        Double operador2 = pilaoperando.pop();
+                        Double operador1 = pilaoperando.pop();
+                        Double resultado = aplicaOperacion(pilaoperador.pop(), operador1, operador2);
+                        pilaoperando.push(resultado);
+                    }
+
+                }
+
+            }
+
+            /*
+            if (pilaoperando.size() > 1) {
+                if (String.valueOf(v).matches(operadores)) {
+                    pilaoperador.push(String.valueOf(v));
+                }else{
+                    Double operador2 = pilaoperando.pop();
+                    Double operador1 = pilaoperando.pop();
+                    Double resultado = aplicaOperacion(pilaoperador.pop(), operador1, operador2);
+                    pilaoperando.push(resultado);
+                }
+               
+            }else{
+                if (String.valueOf(v).matches(operadores)) {
+                    if (pilaoperando.empty()){
+                       JOptionPane.showMessageDialog(null, "La expresión presenta un error, no puede iniciar con un operador");                      
+                    }else{
+                        pilaoperador.push(String.valueOf(v)); 
+                    }
+                   
+                }else{
+                    Double operando = Double.parseDouble(String.valueOf(v));
+                    pilaoperando.push(operando);                    
+                }
+            }*/
+        }
+
+        return pilaoperando.pop();
     }
 
     private static Double aplicaOperacion(String operador, Double operando1, Double operando2) {

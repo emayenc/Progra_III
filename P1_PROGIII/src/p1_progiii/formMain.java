@@ -395,6 +395,7 @@ public class formMain extends javax.swing.JFrame {
     public void limpiar() {
         txtExpresion.setText("");
         txtVariables.setText("");
+        txtResultadoOperacion.setText("");
         ListaVariables.removeAll(ListaVariables);
         txtExpresion.requestFocus();
 
@@ -450,17 +451,17 @@ public class formMain extends javax.swing.JFrame {
             }
             txtVariables.setText(var);
            
-            for(int x=0;x< dato.length();x++){
-                for(int i = 0;i < ListaVariables.size();i++){
-                    char v= dato.charAt(x);
-                    if((char)ListaVariables.get(i).getNombre()== v){
-                        dato=dato.replace(v, (char)ListaVariables.get(i).getValor());
-                    }
-                }
+            //for(int x=0;x< dato.length();x++){
+                //for(int i = 0;i < ListaVariables.size();i++){
+                    //char v= dato.charAt(x);
+                   // if((char)ListaVariables.get(i).getNombre()== v){
+                 //       dato=dato.replace((char)ListaVariables.get(i).getNombre(), (char)ListaVariables.get(i).getValor());
+               //     }
+             //   }
                 
-            }
-
-            System.out.println(dato);
+           // }
+            double result = NotacionPolaca.evaluar(dato);
+            txtResultadoOperacion.setText(String.valueOf(result));
            // int result = evaluate(expression);
         }
 
