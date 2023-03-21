@@ -414,7 +414,7 @@ public class formMain extends javax.swing.JFrame {
     }
 
     public void revisaExpresion(String dato) {
-        String letrasNumerosOperadores = "[a-z0-9+\\-*/=()^√\b]+";
+        String letrasNumerosOperadores = "[a-z0-9+\\-*/\\(\\)^√\b]+";
         String letras = "[a-z]";
         String exp1 = "", exp2 = "";
         String var = "";
