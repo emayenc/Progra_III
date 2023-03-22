@@ -380,7 +380,7 @@ public class formMain extends javax.swing.JFrame {
     private void txtExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresionKeyPressed
         // TODO add your handling code here:
 
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER ) {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             procesar();
         }
     }//GEN-LAST:event_txtExpresionKeyPressed
@@ -431,17 +431,31 @@ public class formMain extends javax.swing.JFrame {
             }
         }
         if (exp2.length() != 0) {
-            JOptionPane.showMessageDialog(null, "La expresión ingresada contiene los siguientes caracteres no permitidos: " + "'"+exp2+"'");
+            JOptionPane.showMessageDialog(null, "La expresión ingresada contiene los siguientes caracteres no permitidos: " + "'" + exp2 + "'");
         } else {
             for (int i = 0; i < dato.length(); i++) {
                 char c = dato.charAt(i);
                 if (String.valueOf(c).matches(letras)) {
                     Literal item = new Literal();
-                    item.nombre = c;
-                    item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                    Boolean existe =false;
+                    for(int j=0;j < ListaVariables.size();j++){
+                        if(ListaVariables.get(j).getNombre()== c){
+                            existe = true;
+                        }
+                    }
                     
-                    
-                    ListaVariables.add(item);
+                    if (ListaVariables.isEmpty()) {
+                        item.nombre = c;
+                        item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                        ListaVariables.add(item);
+                    } else {
+                        if(existe == false){
+                        item.nombre = c;
+                        item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                        ListaVariables.add(item);                            
+                        }
+                    }
+
                     txtExpresion.requestFocus();
                 }
             }
@@ -450,19 +464,18 @@ public class formMain extends javax.swing.JFrame {
 
             }
             txtVariables.setText(var);
-           
+
             //for(int x=0;x< dato.length();x++){
-                //for(int i = 0;i < ListaVariables.size();i++){
-                    //char v= dato.charAt(x);
-                   // if((char)ListaVariables.get(i).getNombre()== v){
-                 //       dato=dato.replace((char)ListaVariables.get(i).getNombre(), (char)ListaVariables.get(i).getValor());
-               //     }
-             //   }
-                
-           // }
+            //for(int i = 0;i < ListaVariables.size();i++){
+            //char v= dato.charAt(x);
+            // if((char)ListaVariables.get(i).getNombre()== v){
+            //       dato=dato.replace((char)ListaVariables.get(i).getNombre(), (char)ListaVariables.get(i).getValor());
+            //     }
+            //   }
+            // }
             double result = NotacionPolaca.evaluar(dato);
             txtResultadoOperacion.setText(String.valueOf(result));
-           // int result = evaluate(expression);
+
         }
 
     }
