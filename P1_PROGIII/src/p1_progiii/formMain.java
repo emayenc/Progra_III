@@ -425,7 +425,7 @@ public class formMain extends javax.swing.JFrame {
 
     public void limpiar() {
         txtExpresion.setText("");
-        txtExpresion2.setText("");        
+        txtExpresion2.setText("");
         txtVariables.setText("");
         txtResultadoOperacion.setText("");
         ListaVariables.removeAll(ListaVariables);
@@ -448,7 +448,7 @@ public class formMain extends javax.swing.JFrame {
     public void revisaExpresion(String dato) {
         String letrasNumerosOperadores = "[a-z0-9+\\-*/\\(\\)^√\b]+";
         String letras = "[a-z]";
-        String operadores = "[\\-+*/^\\√\b]+";        
+        String operadores = "[\\-+*/^\\√\b]+";
         String exp1 = "", exp2 = "";
         String var = "";
         if (dato.matches(letrasNumerosOperadores)) {
@@ -498,9 +498,9 @@ public class formMain extends javax.swing.JFrame {
             }
             txtVariables.setText(var);
             String dato2 = "";
-            String nP= NotacionPolaca.ordenamientoPostfijo(dato);
+            String nP = NotacionPolaca.ordenamientoPostfijo(dato);
             txtExpresion2.setText(nP);
-            
+
             for (int x = 0; x < nP.length(); x++) {
                 char v = nP.charAt(x);
                 for (int i = 0; i < ListaVariables.size(); i++) {
@@ -511,18 +511,21 @@ public class formMain extends javax.swing.JFrame {
 
                 }
                 if (String.valueOf(v).matches(operadores)) {
-                    dato2 = dato2 + v;              
-                }                
+                    dato2 = dato2 + v;
+                }
 
             }
-            
+
             //double result = NotacionPolaca.evaluar(dato2);
             //txtResultadoOperacion.setText(String.valueOf(result));
+
+            ArbolExpresion arbol = new ArbolExpresion();
+            arbol.construir(dato);
+            arbol.imprimir();
 
         }
 
     }
-    
 
     /**
      * @param args the command line arguments

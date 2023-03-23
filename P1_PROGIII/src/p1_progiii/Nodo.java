@@ -11,17 +11,16 @@ package p1_progiii;
  */
 public class Nodo {
 
-    String valor;
+    char valor;
     Nodo nIzquierdo;
     Nodo nDerecho;
 
-    public Nodo(String valor) {
+    public Nodo(char valor) {
         this.valor = valor;
         this.nIzquierdo = null;
         this.nDerecho = null;
     }
-
-    public Nodo(String valor, Nodo nIzquierdo, Nodo nDerecho) {
+    public Nodo(char valor, Nodo nIzquierdo, Nodo nDerecho) {
         this.valor = valor;
         this.nIzquierdo = nIzquierdo;
         this.nDerecho = nDerecho;
