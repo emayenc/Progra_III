@@ -13,6 +13,7 @@ b = ?
 c = ?
 d = ?
 e = ?
+
 Luego mostrar los recorridos del árbol y evaluar el recorrido postorden, este 
 recorrido como notación polaca o postfija para que investigue cómo evaluarlo 
 (es decir resolver la expresión).
