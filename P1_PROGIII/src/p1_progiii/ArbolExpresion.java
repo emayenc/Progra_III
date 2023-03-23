@@ -16,68 +16,101 @@ import javax.swing.JOptionPane;
 public class ArbolExpresion {
 
     Nodo raiz;
+    public static String varIn="",varPre="",varPost="";
 
     public ArbolExpresion() {
         raiz = null;
     }
 
     public void construir(String expresion) {
-        Stack<Nodo> pila = new Stack<Nodo>();
-       
-        try{
-        for (int i = 0; i < expresion.length(); i++) {
-            char caracter = expresion.charAt(i);
+        try {
+            Stack<Nodo> pila = new Stack<Nodo>();
+            for (int i = 0; i < expresion.length(); i++) {
+                char caracter = expresion.charAt(i);
 
-            if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '^' || caracter == '√') {
-                Nodo nuevoNodo = new Nodo(caracter);
-                nuevoNodo.nDerecho = pila.pop();
-                nuevoNodo.nIzquierdo = pila.pop();
-                pila.push(nuevoNodo);
-            } else {
-                Nodo nuevoNodo = new Nodo(caracter);
-                pila.push(nuevoNodo);
+                if (caracter == '+' || caracter == '-' || caracter == '*' || caracter == '/' || caracter == '^' || caracter == '√') {
+                    Nodo nuevoNodo = new Nodo(caracter);
+
+                    if (pila.isEmpty() == false) {
+                        nuevoNodo.nDerecho = pila.pop();
+                    } else {
+                        nuevoNodo.nDerecho = null;
+                    }
+                    if (pila.isEmpty() == false) {
+                        nuevoNodo.nIzquierdo = pila.pop();
+                    } else {
+                        nuevoNodo.nIzquierdo = null;
+                    }
+                    pila.push(nuevoNodo);
+                } else if (caracter == ')' || caracter == '(') {
+                    //Excluir paréntesis
+                } else {
+                    Nodo nuevoNodo = new Nodo(caracter);
+                    if (pila.isEmpty() == false) {
+                        nuevoNodo.nDerecho = pila.pop();
+                    } else {
+                        nuevoNodo.nDerecho = null;
+                    }
+                    if (pila.isEmpty() == false) {
+                        nuevoNodo.nIzquierdo = pila.pop();
+                    } else {
+                        nuevoNodo.nIzquierdo = null;
+                    }
+                    pila.push(nuevoNodo);
+                }
             }
-        }
-        raiz = pila.peek();            
-        }catch(EmptyStackException e){
+            raiz = pila.peek();
+        } catch (EmptyStackException e) {
             JOptionPane.showMessageDialog(null, "Error en procesamiento de pila, revise la sintaxis de la expresión");
-         
+
         }
 
     }
 
-    public void imprimir() {
-        imprimirInorder(raiz);
-        imprimirPreorder(raiz);
-        imprimirPostorder(raiz);        
-        
+    public void imprimir(String modo) {
+        switch (modo) {
+            case "in":
+                 imprimirInorder(raiz);
+                 break;
+            case"pre":
+                 imprimirPreorder(raiz);
+                 break;                 
+            case"post":
+                 imprimirPostorder(raiz);
+                 break;                 
+            default:
+        }
     }
 
     private void imprimirInorder(Nodo nodo) {
+        //String dato = "";
         if (nodo != null) {
             imprimirInorder(nodo.nIzquierdo);
-            System.out.println(nodo.valor + " ");
+            varIn+=nodo.valor + " ";
             imprimirInorder(nodo.nDerecho);
         }
+        //return dato;
     }
 
-     private void imprimirPreorder(Nodo nodo) {
-
+    private void imprimirPreorder(Nodo nodo) {
+        //String dato = "";
         if (nodo == null) {
             return;
         }
-        System.out.println(nodo.valor + " ");
+        varPre+=nodo.valor + " ";
         imprimirPreorder(nodo.nIzquierdo);
         imprimirPreorder(nodo.nDerecho);
+        //return dato;
     }
 
-     private void imprimirPostorder(Nodo nodo) {
-
+    private void imprimirPostorder(Nodo nodo) {
+        //String dato = "";
         if (nodo == null) {
-            return;
+            return ;
         }
         imprimirPostorder(nodo.nIzquierdo);
         imprimirPostorder(nodo.nDerecho);
-        System.out.println(nodo.valor + " ");
+        varPost+=nodo.valor + " ";
+        //return dato;
     }
 }

@@ -20,10 +20,5 @@ public class Nodo {
         this.nIzquierdo = null;
         this.nDerecho = null;
     }
-    public Nodo(char valor, Nodo nIzquierdo, Nodo nDerecho) {
-        this.valor = valor;
-        this.nIzquierdo = nIzquierdo;
-        this.nDerecho = nDerecho;
-    }
 
 }

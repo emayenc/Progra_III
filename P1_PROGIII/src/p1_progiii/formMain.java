@@ -53,6 +53,9 @@ public class formMain extends javax.swing.JFrame {
         txtVariables = new javax.swing.JTextField();
         txtExpresion2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        txtRecorridos = new javax.swing.JTextField();
+        txtRecorridos1 = new javax.swing.JTextField();
+        txtRecorridos2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Proyecto I");
@@ -239,36 +242,51 @@ public class formMain extends javax.swing.JFrame {
 
         jLabel4.setText("Notación polaca:");
 
+        txtRecorridos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtRecorridos.setEnabled(false);
+
+        txtRecorridos1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtRecorridos1.setEnabled(false);
+
+        txtRecorridos2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtRecorridos2.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtRecorridos)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnProcesar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnCancelar))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnProcesar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnCancelar))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel4))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtExpresion2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                                            .addComponent(txtResultadoOperacion))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtExpresion2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                    .addComponent(txtResultadoOperacion))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6)
-                    .addComponent(txtVariables))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtVariables)
+                    .addComponent(txtRecorridos2)
+                    .addComponent(txtRecorridos1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,7 +304,7 @@ public class formMain extends javax.swing.JFrame {
                                 .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtExpresion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
@@ -300,8 +318,14 @@ public class formMain extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtRecorridos, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtRecorridos1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtRecorridos2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44))
         );
 
         pack();
@@ -428,6 +452,12 @@ public class formMain extends javax.swing.JFrame {
         txtExpresion2.setText("");
         txtVariables.setText("");
         txtResultadoOperacion.setText("");
+        txtRecorridos.setText("");
+        txtRecorridos1.setText("");
+        txtRecorridos2.setText("");
+        ArbolExpresion.varIn = "";
+        ArbolExpresion.varPre = "";
+        ArbolExpresion.varPost = "";
         ListaVariables.removeAll(ListaVariables);
         txtExpresion.requestFocus();
 
@@ -501,8 +531,8 @@ public class formMain extends javax.swing.JFrame {
             String nP = NotacionPolaca.ordenamientoPostfijo(dato);
             txtExpresion2.setText(nP);
 
-            for (int x = 0; x < nP.length(); x++) {
-                char v = nP.charAt(x);
+            for (int x = 0; x < dato.length(); x++) {
+                char v = dato.charAt(x);
                 for (int i = 0; i < ListaVariables.size(); i++) {
 
                     if ((char) ListaVariables.get(i).getNombre() == v) {
@@ -516,12 +546,17 @@ public class formMain extends javax.swing.JFrame {
 
             }
 
-            //double result = NotacionPolaca.evaluar(dato2);
-            //txtResultadoOperacion.setText(String.valueOf(result));
+            double result = NotacionPolaca.evaluar(dato2);
+            txtResultadoOperacion.setText(String.valueOf(result));
 
             ArbolExpresion arbol = new ArbolExpresion();
             arbol.construir(dato);
-            arbol.imprimir();
+            arbol.imprimir("in");
+            txtRecorridos.setText("Recorrido InOrder: " + ArbolExpresion.varIn);
+            arbol.imprimir("pre");
+            txtRecorridos1.setText("Recorrido PreOrder: " + ArbolExpresion.varPre);
+            arbol.imprimir("post");
+            txtRecorridos2.setText("Recorrido PostOrder: " + ArbolExpresion.varPost);
 
         }
 
@@ -580,6 +615,9 @@ public class formMain extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtExpresion;
     private javax.swing.JTextField txtExpresion2;
+    private javax.swing.JTextField txtRecorridos;
+    private javax.swing.JTextField txtRecorridos1;
+    private javax.swing.JTextField txtRecorridos2;
     private javax.swing.JTextField txtResultadoOperacion;
     private javax.swing.JTextField txtVariables;
     // End of variables declaration//GEN-END:variables
