@@ -21,4 +21,10 @@ public class Nodo {
         this.nDerecho = null;
     }
 
+    public Nodo(String valor, Nodo nIzquierdo, Nodo nDerecho) {
+        this.valor = valor;
+        this.nIzquierdo = nIzquierdo;
+        this.nDerecho = nDerecho;
+    }
+
 }

@@ -15,6 +15,66 @@ import javax.swing.JOptionPane;
 
 public class NotacionPolaca {
 
+    public static String ordenamientoPostfijo(String expresion) {
+        String cadena = "";
+        String operadores = "[\\-+*/^\\√\b]+";
+        Stack<Character> pilaCaracter = new Stack<>();
+        Stack<Character> pilaOperador = new Stack<>();
+        try {
+            for (int i = 0; i < expresion.length(); i++) {
+                char c = expresion.charAt(i);
+
+                if (String.valueOf(c).matches(operadores)) {
+                    //cadena += String.valueOf(c);
+                    pilaOperador.push(c);
+
+                } else {
+                    if (c != ')' && c != '(') {
+                        pilaCaracter.push(c);
+                        if (pilaCaracter.size() > 1) {
+                            pilaCaracter.pop();
+                            pilaCaracter.pop();
+                            cadena += c + String.valueOf(pilaOperador.pop());
+                        } else {
+                            cadena += String.valueOf(c);
+                        }
+                    }
+                    if (i == expresion.length()-1) {
+                        cadena += String.valueOf(pilaOperador.pop());
+                    }
+
+                }
+            }
+        } catch (EmptyStackException e) {
+            JOptionPane.showMessageDialog(null, "Error en procesamiento de pila vacía");
+            return cadena;
+        }
+
+        return cadena;
+    }
+
+    static int prioridad(char c) {
+        int prioridad;
+        switch (c) {
+            case '+':
+            case '-':
+                prioridad = 1;
+
+            case '*':
+            case '/':
+                prioridad = 2;
+
+            case '^':
+            case '√':
+                prioridad = 3;
+
+            default:
+                prioridad = -1;
+
+        }
+        return prioridad;
+    }
+
     public static double evaluar(String expresion) {
         Stack<String> pilaoperador = new Stack<>();
         Stack<Double> pilaoperando = new Stack<>();
@@ -48,9 +108,9 @@ public class NotacionPolaca {
                                 Double resultado = aplicaOperacion(pilaoperador.pop(), operador1, operador2);
                                 pilaoperando.push(resultado);
                             } else {
-                                if (pilaoperador.pop().matches("√")) {
+                                if (pilaoperador.size() > 0 && pilaoperador.pop().matches("√")) {
                                     Double operador1 = pilaoperando.pop();
-                                    Double resultado = aplicaOperacion("√", operador1, 0.00);
+                                    Double resultado = aplicaOperacion("√", operador1, 0.5);
                                     pilaoperando.push(resultado);
                                 }
 
@@ -80,7 +140,7 @@ public class NotacionPolaca {
 
     }
 
-    private static Double aplicaOperacion(String operador, Double operando1, Double operando2) {
+    public static Double aplicaOperacion(String operador, Double operando1, Double operando2) {
         switch (operador) {
             case "+":
                 return operando1 + operando2;
@@ -93,7 +153,7 @@ public class NotacionPolaca {
             case "^":
                 return Math.pow(operando1, operando2);
             case "√":
-                return Math.sqrt(operando1);
+                return Math.pow(operando1, operando2);
             default:
                 throw new IllegalArgumentException("Operador inválido: " + operador);
         }

@@ -11,9 +11,9 @@ package p1_progiii;
  */
 public class Literal {
     char nombre;
-    double valor;
+    int valor;
 
-    public Literal(char nombre, double valor) {
+    public Literal(char nombre, int valor) {
         this.nombre = nombre;
         this.valor = valor;
     }
@@ -26,7 +26,7 @@ public class Literal {
         this.nombre = nombre;
     }
 
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 
@@ -34,7 +34,7 @@ public class Literal {
         return nombre;
     }
 
-    public double getValor() {
+    public int getValor() {
         return valor;
     }
     

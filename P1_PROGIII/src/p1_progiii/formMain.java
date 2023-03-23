@@ -51,8 +51,11 @@ public class formMain extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtResultadoOperacion = new javax.swing.JTextField();
         txtVariables = new javax.swing.JTextField();
+        txtExpresion2 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Proyecto I");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -223,21 +226,28 @@ public class formMain extends javax.swing.JFrame {
         txtVariables.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtVariables.setEnabled(false);
 
+        txtExpresion2.setEditable(false);
+        txtExpresion2.setEnabled(false);
+        txtExpresion2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtExpresion2KeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtExpresion2KeyTyped(evt);
+            }
+        });
+
+        jLabel4.setText("Notación polaca:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtResultadoOperacion)
-                                .addGap(110, 110, 110))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -245,16 +255,25 @@ public class formMain extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnCancelar))
                             .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtExpresion2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                                    .addComponent(txtResultadoOperacion))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
+                    .addComponent(txtVariables))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -267,18 +286,22 @@ public class formMain extends javax.swing.JFrame {
                                 .addComponent(txtExpresion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtResultadoOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(txtExpresion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(2, 2, 2)
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtResultadoOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(txtVariables, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         pack();
@@ -384,6 +407,14 @@ public class formMain extends javax.swing.JFrame {
             procesar();
         }
     }//GEN-LAST:event_txtExpresionKeyPressed
+
+    private void txtExpresion2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresion2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExpresion2KeyPressed
+
+    private void txtExpresion2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtExpresion2KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtExpresion2KeyTyped
     public void agregaSigno(String valor) {
         String temp;
         temp = txtExpresion.getText();
@@ -394,6 +425,7 @@ public class formMain extends javax.swing.JFrame {
 
     public void limpiar() {
         txtExpresion.setText("");
+        txtExpresion2.setText("");        
         txtVariables.setText("");
         txtResultadoOperacion.setText("");
         ListaVariables.removeAll(ListaVariables);
@@ -416,6 +448,7 @@ public class formMain extends javax.swing.JFrame {
     public void revisaExpresion(String dato) {
         String letrasNumerosOperadores = "[a-z0-9+\\-*/\\(\\)^√\b]+";
         String letras = "[a-z]";
+        String operadores = "[\\-+*/^\\√\b]+";        
         String exp1 = "", exp2 = "";
         String var = "";
         if (dato.matches(letrasNumerosOperadores)) {
@@ -437,22 +470,22 @@ public class formMain extends javax.swing.JFrame {
                 char c = dato.charAt(i);
                 if (String.valueOf(c).matches(letras)) {
                     Literal item = new Literal();
-                    Boolean existe =false;
-                    for(int j=0;j < ListaVariables.size();j++){
-                        if(ListaVariables.get(j).getNombre()== c){
+                    Boolean existe = false;
+                    for (int j = 0; j < ListaVariables.size(); j++) {
+                        if (ListaVariables.get(j).getNombre() == c) {
                             existe = true;
                         }
                     }
-                    
+
                     if (ListaVariables.isEmpty()) {
                         item.nombre = c;
-                        item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                        item.valor = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
                         ListaVariables.add(item);
                     } else {
-                        if(existe == false){
-                        item.nombre = c;
-                        item.valor = Double.parseDouble(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
-                        ListaVariables.add(item);                            
+                        if (existe == false) {
+                            item.nombre = c;
+                            item.valor = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor para: " + c));
+                            ListaVariables.add(item);
                         }
                     }
 
@@ -464,21 +497,32 @@ public class formMain extends javax.swing.JFrame {
 
             }
             txtVariables.setText(var);
+            String dato2 = "";
+            String nP= NotacionPolaca.ordenamientoPostfijo(dato);
+            txtExpresion2.setText(nP);
+            
+            for (int x = 0; x < nP.length(); x++) {
+                char v = nP.charAt(x);
+                for (int i = 0; i < ListaVariables.size(); i++) {
 
-            //for(int x=0;x< dato.length();x++){
-            //for(int i = 0;i < ListaVariables.size();i++){
-            //char v= dato.charAt(x);
-            // if((char)ListaVariables.get(i).getNombre()== v){
-            //       dato=dato.replace((char)ListaVariables.get(i).getNombre(), (char)ListaVariables.get(i).getValor());
-            //     }
-            //   }
-            // }
-            double result = NotacionPolaca.evaluar(dato);
-            txtResultadoOperacion.setText(String.valueOf(result));
+                    if ((char) ListaVariables.get(i).getNombre() == v) {
+                        dato2 = dato2 + Integer.parseInt(String.valueOf(ListaVariables.get(i).getValor()));
+                    }
+
+                }
+                if (String.valueOf(v).matches(operadores)) {
+                    dato2 = dato2 + v;              
+                }                
+
+            }
+            
+            //double result = NotacionPolaca.evaluar(dato2);
+            //txtResultadoOperacion.setText(String.valueOf(result));
 
         }
 
     }
+    
 
     /**
      * @param args the command line arguments
@@ -527,10 +571,12 @@ public class formMain extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtExpresion;
+    private javax.swing.JTextField txtExpresion2;
     private javax.swing.JTextField txtResultadoOperacion;
     private javax.swing.JTextField txtVariables;
     // End of variables declaration//GEN-END:variables
