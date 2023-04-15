@@ -9,13 +9,14 @@ package abb_avl;
  *
  * @author Administrador
  */
-public class ABB {
+public class Node_abb {
+    int data;
+    Node_abb left;
+    Node_abb right;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+    public Node_abb(int data) {
+        this.data = data;
+        left = null;
+        right = null;
     }
-    
 }

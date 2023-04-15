@@ -11,7 +11,7 @@ package abb_avl;
  */
 public class BinaryTree {
 
-    Node root;
+    Node_abb root;
 
     public BinaryTree() {
         root = null;
@@ -23,9 +23,9 @@ public class BinaryTree {
     }
 
     // método auxiliar para insertar nodo
-    public Node insertNode(Node node, int data) {
+    public Node_abb insertNode(Node_abb node, int data) {
         if (node == null) {
-            node = new Node(data);
+            node = new Node_abb(data);
             return node;
         }
 
@@ -39,12 +39,12 @@ public class BinaryTree {
     }
 
     // método para buscar un nodo
-    public Node search(int data) {
+    public Node_abb search(int data) {
         return searchNode(root, data);
     }
 
     // método auxiliar para buscar nodo
-    public Node searchNode(Node node, int data) {
+    public Node_abb searchNode(Node_abb node, int data) {
         if (node == null || node.data == data) {
             return node;
         }
@@ -62,7 +62,7 @@ public class BinaryTree {
     }
 
     // método auxiliar para borrar nodo
-    public Node deleteNode(Node node, int data) {
+    public Node_abb deleteNode(Node_abb node, int data) {
         if (node == null) {
             return node;
         }
@@ -87,7 +87,7 @@ public class BinaryTree {
     }
 
     // método auxiliar para ubicar el valor mínimo de un sub-árbol
-    public int minValue(Node node) {
+    public int minValue(Node_abb node) {
         int min = node.data;
 
         while (node.left != null) {
@@ -99,7 +99,7 @@ public class BinaryTree {
     }
 
     // Función para recorrer de modo inOrder el árbol binario
-    public static void inorder(Node nodoR) {
+    public static void inorder(Node_abb nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {
@@ -112,7 +112,7 @@ public class BinaryTree {
     }
 
     // Función para recorrer de modo preOrder el árbol binario
-    public static void preorder(Node nodoR) {
+    public static void preorder(Node_abb nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {
@@ -124,7 +124,7 @@ public class BinaryTree {
     }
 
     // Función para recorrer de modo postOrder el árbol binario
-    public static void postorder(Node nodoR) {
+    public static void postorder(Node_abb nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {

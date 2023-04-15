@@ -9,13 +9,14 @@ package abb_avl;
  *
  * @author Administrador
  */
-public class Node {
-    int data;
-    Node left, right;
+public class Node_avl {
 
-    public Node(int data) {
-        this.data = data;
-        left = null;
-        right = null;
+    int key, height;
+    Node_avl left;
+    Node_avl right;
+
+    Node_avl(int d) {
+        key = d;
+        height = 1;
     }
 }
