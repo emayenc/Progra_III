@@ -174,4 +174,41 @@ public class AVLTree {
         return searchNode(root.right, key);
     }
 
+    // Función para recorrer de modo inOrder el árbol binario
+    public static void inorder(Node_abb nodoR) {
+
+        //Se verifica si el nodo recibido raíz está vacio
+        if (nodoR == null) {
+            return;
+        }
+
+        inorder(nodoR.left);
+        System.out.print(nodoR.data + " ");
+        inorder(nodoR.right);
+    }
+
+    // Función para recorrer de modo preOrder el árbol binario
+    public static void preorder(Node_abb nodoR) {
+
+        //Se verifica si el nodo recibido raíz está vacio
+        if (nodoR == null) {
+            return;
+        }
+        System.out.print(nodoR.data + " ");
+        preorder(nodoR.left);
+        preorder(nodoR.right);
+    }
+
+    // Función para recorrer de modo postOrder el árbol binario
+    public static void postorder(Node_abb nodoR) {
+
+        //Se verifica si el nodo recibido raíz está vacio
+        if (nodoR == null) {
+            return;
+        }
+        postorder(nodoR.left);
+        postorder(nodoR.right);
+        System.out.print(nodoR.data + " ");
+    }
+
 }
