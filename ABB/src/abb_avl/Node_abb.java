@@ -19,4 +19,9 @@ public class Node_abb {
         left = null;
         right = null;
     }
+
+    public Node_abb() {
+    }
+
+
 }

@@ -11,20 +11,24 @@ package abb_avl;
  */
 public class AVLTree {
 
-    Node_avl root;
+    public static Node_avl root;
 
-    public int height(Node_avl N) {
+    public static Node_avl getRoot() {
+        return root;
+    }
+
+    public static int height(Node_avl N) {
         if (N == null) {
             return 0;
         }
         return N.height;
     }
 
-    public int max(int a, int b) {
+    public static int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
-    public Node_avl rightRotate(Node_avl y) {
+    public static Node_avl rightRotate(Node_avl y) {
         Node_avl x = y.left;
         Node_avl T2 = x.right;
 
@@ -37,7 +41,7 @@ public class AVLTree {
         return x;
     }
 
-    public Node_avl leftRotate(Node_avl x) {
+    public static Node_avl leftRotate(Node_avl x) {
         Node_avl y = x.right;
         Node_avl T2 = y.left;
 
@@ -50,22 +54,28 @@ public class AVLTree {
         return y;
     }
 
-    public int getBalance(Node_avl N) {
+    public static int getBalance(Node_avl N) {
         if (N == null) {
             return 0;
         }
         return height(N.left) - height(N.right);
     }
 
-    public Node_avl insert(Node_avl node, int key) {
+    // método para insertar un nodo
+    public static int insert(int key) {
+        root = insertNode(root, key);
+        return key;
+    }
+
+    public static Node_avl insertNode(Node_avl node, int key) {
         if (node == null) {
             return (new Node_avl(key));
         }
 
         if (key < node.key) {
-            node.left = insert(node.left, key);
+            node.left = insertNode(node.left, key);
         } else if (key > node.key) {
-            node.right = insert(node.right, key);
+            node.right = insertNode(node.right, key);
         } else {
             return node;
         }
@@ -95,7 +105,7 @@ public class AVLTree {
         return node;
     }
 
-    public Node_avl minValueNode(Node_avl node) {
+    public static Node_avl minValueNode(Node_avl node) {
         Node_avl current = node;
         while (current.left != null) {
             current = current.left;
@@ -103,7 +113,13 @@ public class AVLTree {
         return current;
     }
 
-    public Node_avl deleteNode(Node_avl root, int key) {
+    // método para borrar nodo
+    public static int delete(int key) {
+        root = deleteNode(root, key);
+        return key;
+    }    
+    
+    public static Node_avl deleteNode(Node_avl root, int key) {
         if (root == null) {
             return root;
         }
@@ -162,7 +178,11 @@ public class AVLTree {
         return root;
     }
 
-    public Node_avl searchNode(Node_avl root, int key) {
+   public static Node_avl search(int key) {
+        return searchNode(root, key);
+    }    
+    
+    public static Node_avl searchNode(Node_avl root, int key) {
         if (root == null || root.key == key) {
             return root;
         }
@@ -175,7 +195,7 @@ public class AVLTree {
     }
 
     // Función para recorrer de modo inOrder el árbol binario
-    public static void inorder(Node_abb nodoR) {
+    public static void inorder(Node_avl nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {
@@ -183,24 +203,24 @@ public class AVLTree {
         }
 
         inorder(nodoR.left);
-        System.out.print(nodoR.data + " ");
+        System.out.print(nodoR.key + " ");
         inorder(nodoR.right);
     }
 
     // Función para recorrer de modo preOrder el árbol binario
-    public static void preorder(Node_abb nodoR) {
+    public static void preorder(Node_avl nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {
             return;
         }
-        System.out.print(nodoR.data + " ");
+        System.out.print(nodoR.key + " ");
         preorder(nodoR.left);
         preorder(nodoR.right);
     }
 
     // Función para recorrer de modo postOrder el árbol binario
-    public static void postorder(Node_abb nodoR) {
+    public static void postorder(Node_avl nodoR) {
 
         //Se verifica si el nodo recibido raíz está vacio
         if (nodoR == null) {
@@ -208,7 +228,7 @@ public class AVLTree {
         }
         postorder(nodoR.left);
         postorder(nodoR.right);
-        System.out.print(nodoR.data + " ");
+        System.out.print(nodoR.key + " ");
     }
 
 }

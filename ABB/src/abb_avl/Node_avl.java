@@ -19,4 +19,8 @@ public class Node_avl {
         key = d;
         height = 1;
     }
+
+    public Node_avl() {
+    }
+    
 }

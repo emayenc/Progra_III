@@ -11,19 +11,24 @@ package abb_avl;
  */
 public class BinaryTree {
 
-    Node_abb root;
+    public static Node_abb root;
+
+    public static Node_abb getRoot() {
+        return root;
+    }
 
     public BinaryTree() {
         root = null;
     }
 
     // método para insertar un nodo
-    public void insert(int data) {
+    public static int insert(int data) {
         root = insertNode(root, data);
+        return data;
     }
 
     // método auxiliar para insertar nodo
-    public Node_abb insertNode(Node_abb node, int data) {
+    public static Node_abb insertNode(Node_abb node, int data) {
         if (node == null) {
             node = new Node_abb(data);
             return node;
@@ -39,12 +44,12 @@ public class BinaryTree {
     }
 
     // método para buscar un nodo
-    public Node_abb search(int data) {
+    public static Node_abb search(int data) {
         return searchNode(root, data);
     }
 
     // método auxiliar para buscar nodo
-    public Node_abb searchNode(Node_abb node, int data) {
+    public static Node_abb searchNode(Node_abb node, int data) {
         if (node == null || node.data == data) {
             return node;
         }
@@ -57,12 +62,13 @@ public class BinaryTree {
     }
 
     // método para borrar nodo
-    public void delete(int data) {
+    public static int delete(int data) {
         root = deleteNode(root, data);
+        return data;
     }
 
     // método auxiliar para borrar nodo
-    public Node_abb deleteNode(Node_abb node, int data) {
+    public static Node_abb deleteNode(Node_abb node, int data) {
         if (node == null) {
             return node;
         }
@@ -87,7 +93,7 @@ public class BinaryTree {
     }
 
     // método auxiliar para ubicar el valor mínimo de un sub-árbol
-    public int minValue(Node_abb node) {
+    public static int minValue(Node_abb node) {
         int min = node.data;
 
         while (node.left != null) {
